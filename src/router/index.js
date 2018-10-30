@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Index from '@/pages/Admin/Index'
+import Index from '@/pages/Admin/index'
 import New from '@/pages/Admin/New'
 import Edit from '@/pages/Admin/Edit'
 import Product from '@/pages/Admin/Product'

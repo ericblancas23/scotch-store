@@ -6,7 +6,7 @@
           <b-nav tabs>
             <b-nav-item to="/">Home</b-nav-item>
             <b-nav-item to="/Cart">Cart</b-nav-item>
-            <b-nav-item to="/Admin">Admin</b-nav-item>
+            <b-nav-item to="/admin">Admin</b-nav-item>
           </b-nav>
       </div>
     </nav>

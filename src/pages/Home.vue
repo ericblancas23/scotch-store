@@ -10,7 +10,7 @@
             name: "home",
             data () {
                 return {
-                    msg: "Welcome"
+                    msg: "Woah"
                 }
             }
         }
