@@ -1,60 +1,74 @@
 <template>
-  <div>
-  <div>
-  <form @submit.prevent="saveProduct">
-    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-      <div class="form-group">
-            <label>Name</label>
-                <b-form-input
-        type="text"
-        placeholder="Name"
-        v-model="model.name"
-        v-validate="required"
-        name="name"
-        :class="{'form-control': true, 'errors': errors.has('name')}"
-    />
-        <span class="small text-danger" v-show="errors.has('name')">Name is required</span>
-
-      </div>
-      <div class="form-group">
-          <label>Price</label>
-          <b-form-input 
-            type="number"
-            class="form-control"
-            placeholder="price"
-            v-model="model.price"
-            v-validate=required
-            :class="{'form-control': true, 'errors': errors.has('price')}"
-          />
-          <span class="small text-danger" v-show="errors.has('price')">Please set a valid price</span> 
-      </div>
-
-      <div class="form-control">
-          <label>Manufacturer</label>
-          <select 
-            type="text"
-            class="form-control"
-            v-model="model.manufacturer"
-            v-validate=required
-            :class="{'form-control': true, 'errrors': errors.has('manufacturer')}"
-          />
-          <span class="form-control" v-show="errors.has('manufacturer')">Manufacturer is required</span>
-      </div>
-    </div>
-  </form>
-  </div>
-  </div>  
+    <b-form @submit="onSubmit">
+    <b-form-group id="exampleInputGroup1"
+                  label="Name"
+                  label-for="exampleInput1">
+      <b-form-input id="exampleInput1"
+                    type="text"
+                    v-model="form.name"
+                    :state="!$v.form.name.$invalid"
+                    aria-describedby="input1LiveFeedback"
+                    placeholder="Enter name" />
+      <b-form-invalid-feedback id="input1LiveFeedback">
+        This is a required field and must be at least 3 characters
+      </b-form-invalid-feedback>
+    </b-form-group>
+    <b-form-group id="exampleInputGroup2"
+                  label="Food"
+                  label-for="exampleInput2">
+      <b-form-select id="exampleInput2"
+                     :options="foods"
+                     :state="!$v.form.food.$invalid"
+                     v-model="form.food" />
+      <b-form-invalid-feedback id="input2LiveFeedback">
+        This is a required field
+      </b-form-invalid-feedback>
+    </b-form-group>
+    <b-button type="submit"
+              variant="primary"
+              :disabled="$v.form.$invalid">
+      Submit
+    </b-button>
+  </b-form>  
 </template>
 
 
-<script>
-    export default {
-        mathods: {
-            saveProduct() {
-                console.log(this.errors);
-            }
+    <script>
+  import { validationMixin } from "vuelidate"
+  import { required, minLength } from "vuelidate/lib/validators"
+
+  export default {
+    name: "myForm",
+    data() {
+      return {
+        foods: [
+          "apple",
+          "orange"
+        ],
+        form: {}
+      }
+    },
+    mixins: [
+      validationMixin
+    ],
+    validations: {
+      form: {
+        food: {
+          required
+        },
+        name: {
+          required,
+          minLength: minLength(3)   
         }
+      }
+    },
+    methods: {
+      onSubmit() {
+        // form submit logic
+      }
     }
+  }
 </script>
+
 
 
