@@ -13,17 +13,7 @@
         This is a required field and must be at least 3 characters
       </b-form-invalid-feedback>
     </b-form-group>
-    <b-form-group id="exampleInputGroup2"
-                  label="Food"
-                  label-for="exampleInput2">
-      <b-form-select id="exampleInput2"
-                     :options="foods"
-                     :state="!$v.form.food.$invalid"
-                     v-model="form.food" />
-      <b-form-invalid-feedback id="input2LiveFeedback">
-        This is a required field
-      </b-form-invalid-feedback>
-    </b-form-group>
+    
     <b-button type="submit"
               variant="primary"
               :disabled="$v.form.$invalid">
